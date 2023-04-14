@@ -1,0 +1,51 @@
+<aside id="sitebar">
+    <div class="sitebar_list">
+	 
+      <table width="100%">
+        <tbody>
+          <tr align="center">
+            <td>
+			 
+			<a href="{label:adlink1}" target="_blank" rel="nofollow" title='点击联系在线客服或者点击右下角在线客服图标'><img src="{label:adpic1}" width="100%"></a></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="sitebar_list">
+      <h4 class="sitebar_title">热门浏览</h4>
+      <ul id="randomposts">
+        {pboot:list scode=* num=20 order=visits}
+        <li><a href="[list:link]">[list:title]</a></li>
+        {/pboot:list}
+      </ul>
+    </div>
+    <div class="sitebar_list">
+      <table width="100%">
+        <tbody>
+          <tr align="center">
+            <td><a href="{label:adlink2}"  title='点击联系客服'><img src="{label:adpic2}" width="100%" ></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sitebar_list">
+      <h4 class="sitebar_title">网站标签</h4>
+      <div class="tagcloud">{pboot:tags num=150}<a href="[tags:link]">[tags:text]</a>{/pboot:tags} </div>
+    </div>
+    <div class="sitebar_list">
+      <h4 class="sitebar_title">友情链接</h4>
+      <div class="tagcloud"> {pboot:link  gid=1 num=50}<a href="[link:link]" title="[link:name]" target="_blank">[link:name]</a>{/pboot:link}</div>
+    </div>
+    <script type="text/javascript"> 
+	$(function() { 
+		var elm = $('.totop'); 
+		var startPos = $(elm).offset().top; 
+		$.event.add(window, "scroll", function() { 
+			var p = $(window).scrollTop(); 
+			$(elm).css('position',((p) > startPos) ? 'fixed' : 'static'); 
+			$(elm).css('top',((p) > startPos) ? '0px' : ''); 
+		}); 
+	}); 
+	</script> 
+  </aside>

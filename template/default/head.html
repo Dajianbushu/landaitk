@@ -1,0 +1,26 @@
+<nav class="header-web">
+  <div class="ed"> <a href="{pboot:sitedomain}/" class="logo" title="{pboot:sitetitle}" rel="home"><img src="{pboot:sitelogo}" alt="{pboot:sitetitle}"></a>
+    <button id="toggle-search" class="header-button"></button>
+    <form onsubmit="return checkSearchForm()" name="searchform" id="search-form" class="search" action="{pboot:scaction}"  method="get">
+      <input class="text" type="text" name="keyword" placeholder="请输入..." value="">
+      <input class="butto" value="搜索" type="submit">
+    </form>
+    <div class="nav-menu"> ... </div>
+    <p id="cover" > </p>
+    <ul class="nav-list">
+      <li><a href="{pboot:sitedomain}/">首页</a></li>
+      {pboot:nav}
+      <li {pboot:if([nav:soncount]>0)}class="menu-item-has-children"{/pboot:if}><a href="[nav:link]">[nav:name]</a>
+        {pboot:if([nav:soncount]>0)}
+        <ul class="sub-menu">
+          {pboot:2nav parent=[nav:scode]}
+          <li><a href="[2nav:link]">[2nav:name]</a></li>
+          {/pboot:2nav}
+        </ul>
+        {/pboot:if}
+      </li>
+      {/pboot:nav}
+    </ul>
+    <script type="text/javascript" src="{pboot:sitedomain}/skin/js/index.js"></script> 
+  </div>
+</nav>

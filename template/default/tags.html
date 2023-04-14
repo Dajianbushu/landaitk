@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<title>{pboot:if('{sort:title}'=='')}{pboot:pagetitle}{else}{sort:title}{/pboot:if}</title>
+<meta name="keywords" content="{pboot:if('{sort:keywords}'=='')}{pboot:pagekeywords}{else}{sort:keywords}{/pboot:if}">
+<meta name="description" content="{pboot:if('{sort:description}'=='')}{pboot:pagedescription}{else}{sort:description}{/pboot:if}">
+<link rel="shortcut icon" href="{pboot:sitedomain}/favicon.ico" />
+<link rel='stylesheet' href='{pboot:sitedomain}/skin/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' href='{pboot:sitedomain}/skin/css/style.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/swiper.min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/html5shiv.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/selectivizr-min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/jquery.min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/jiazai.js'></script>
+</head>
+<body>
+{include file=head.html}
+<!--header-web-->
+<div id="container-page">
+  {include file=right.html}
+  <article class="box">
+    {pboot:list num=12 order=sorting scode=* page=1}
+    <section class="list">
+      <h2 class="mecctitle"> <a href="[list:link]">[list:title]</a> </h2>
+      <span class="titleimg"> <a href="[list:link]"><img src="[list:ico]" alt="[list:title]" /></a></span>
+      <time  class=""> [list:date style=Y-m-d]</time>
+      <div class="zaiyao">
+        <p>[list:description lencn=40]</p>
+      </div>
+    </section>
+    {/pboot:list}
+     {pboot:if({page:rows}>0)}
+<div class="pagebar">
+<div class="pagination">
+<a class="page-item page-link st" href="{page:pre}" title="上一页"><<</a>
+{page:numbar}
+<a class="page-item page-link" href="javascript:;" title="当前页/总页数">{page:current}/{page:count}</a>
+<a class="page-item page-link st" href="{page:next}" title="下一页">>></a>
+</div>
+</div>	
+{else}
+<div class="tac text-secondary">本分类下无任何数据！</div>
+{/pboot:if}
+  </article>
+ 
+</div>
+{include file=foot.html} 
+</body>
+</html>

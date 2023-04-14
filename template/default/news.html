@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<title>{content:title}-{pboot:sitetitle}</title>
+<meta name="keywords" content="{content:keywords}">
+<meta name="description" content="{content:description}">
+<link rel="shortcut icon" href="{pboot:sitedomain}/favicon.ico" />
+<link rel='stylesheet' id='sytle-css'  href='{pboot:sitedomain}/skin/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='{pboot:sitedomain}/skin/css/style.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/swiper.min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/html5shiv.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/selectivizr-min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/jquery.min.js'></script>
+<script type='text/javascript' src='{pboot:sitedomain}/skin/js/jiazai.js'></script>
+</head>
+<body>
+{include file=head.html}
+<!--header-web-->
+<div id="container-page">
+  {include file=right.html}
+  <article class="box">
+    <h1 class="singletitle">{content:title}</h1>
+    <p class="p2">{content:date style=Y-m-d} - admin </p>
+    <div class="content-text" id="maximg">
+      <div class="pcd_ad" style="margin-bottom: 10px;">
+      </div>
+      {content:content}
+      <p style="text-align: center;">
+
+	   备注:本站所有代码仅限学习研究,禁止用于非法商业用途,责任自负. 点击右下加图标联系在线客服,或者添加电报tg:coder2288 电子邮箱:coder2200@protonmail.com
+	  <br/><strong>- END -</strong></p>
+
+	   
+      <div class="bdf">
+        <div class="yue">226</div>
+      </div>
+    </div>
+    <!--content_text-->
+    <div class="xianguan">
+      {pboot:list scode={sort:scode} num=2}
+      <section class="list">
+        <h2 class="mecctitle"> <a href="[list:link]">[list:title]</a> </h2>
+        <span class="titleimg"> <a href="[list:link]"><img src="[list:ico]" alt="[list:title]" /></a></span>
+        <time  class=""> [list:date style=Y-m-d] </time>
+        <div class="zaiyao">
+          <p>[list:description lencn=40]</p>
+        </div>
+      </section>
+      {/pboot:list}
+    </div>
+    <!--相关文章-->
+    
+    <div class="comment" id="comments">
+      <div id="respond">
+        <form onsubmit="return submitcomment(this);" data-action="{pboot:commentaction}" id="commentform">
+          <textarea name="comment" required id="comment" rows="3" placeholder="你有什么要说的 ..." ></textarea>
+          <button type="submit" id="submit">发表评论</button>
+          <div class="plkeyput">
+            <input name="checkcode" required id="checkcode" type="text" class="plkey" size="16" placeholder="验证码">
+            <img align="absmiddle" name="plKeyImg" class="plkeyimg" id="validateimg" src="{pboot:checkcode}" onclick="this.src='{pboot:checkcode}?'+Math.round(Math.random()*10);" style="cursor:pointer;height:37px;"></div>
+        </form>
+      </div>
+      <ol class="comment" id="commetcontent">
+      </ol>
+    </div>
+    <script>
+
+//提交评论
+function submitcomment(obj){
+  var url= $(obj).data("action");
+  var comment=$(obj).find("#comment").val();
+  var checkcode=$(obj).find("#checkcode").val();
+  
+  $.ajax({
+    type: 'POST',
+    url: url,
+    dataType: 'json',
+    data: {
+    	comment: comment,
+    	checkcode: checkcode
+    },
+    success: function (response, status) {
+      if(response.code){
+    	 alert(response.data);
+		 $(obj)[0].reset(); 
+		 $(".modal").modal("hide");	
+		 window.location.reload()
+      }else{
+    	 
+    	 $('.codeimg').click();//更新验证码
+      }
+    },
+    error:function(xhr,status,error){
+      alert('返回数据异常！');
+    }
+  });
+  return false;
+}
+</script> 
+  </article>
+</div>
+{include file=foot.html}
+</body>
+</html>
